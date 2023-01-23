@@ -15,6 +15,10 @@ public class Main {
         final String getNextTripsForAllFavouriteStopsRoutes = "8";
         final String changeCurrentStop = "1";
         final String exit = "q";
+
+        final String ANSI_RED = "\u001B[31m";
+        final String ANSI_RESET = "\u001B[0m";
+
         Scanner scanner = new Scanner(System.in);
         FavouriteList favouriteList = new FavouriteList();
 
@@ -22,7 +26,7 @@ public class Main {
         System.out.println();
 
         while (true) {
-            System.out.println("Current bus stop: " + currentStop + " - " + BusStopList.getStopName(currentStop));
+            System.out.println("Current bus stop: " + ANSI_RED + currentStop + ANSI_RESET + " - " + BusStopList.getStopName(currentStop));
             System.out.println("-----------------------------------");
 
             System.out.println(changeCurrentStop + ": Change current stop");
