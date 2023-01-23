@@ -26,7 +26,7 @@ public class Main {
         System.out.println();
 
         while (true) {
-            System.out.println("Current bus stop: " + ANSI_RED + currentStop + ANSI_RESET + " - " + BusStopList.getStopName(currentStop));
+            System.out.println("Current bus stop: " + ANSI_RED + currentStop + " - " + BusStopList.getStopName(currentStop) + ANSI_RESET );
             System.out.println("-----------------------------------");
 
             System.out.println(changeCurrentStop + ": Change current stop");
