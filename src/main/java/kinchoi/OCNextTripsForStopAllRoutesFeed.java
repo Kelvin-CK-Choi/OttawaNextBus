@@ -25,22 +25,23 @@ public class OCNextTripsForStopAllRoutesFeed extends OCFeed {
 
             ObjectMapper objectMapper = new ObjectMapper();
             JsonNode OCFeed = objectMapper.readTree(url);
-
             JsonNode getRouteSummaryForStopResult = OCFeed.get("GetRouteSummaryForStopResult");
             JsonNode routes = getRouteSummaryForStopResult.get("Routes");
-            JsonNode route = routes.get("Route"); // returns array
+            JsonNode route = routes.get("Route"); // returns array of objects
 
             route.forEach(r -> {
-                JsonNode trips = r.get("Trips");
+                JsonNode trips = r.get("Trips"); // usually returns array of objects, sometimes a single object
 
                 if (trips.isArray()) {
                     trips.forEach(t -> {
+                        // create a Trip object with the result
                         tripResult.add(new Trip(r.get("RouteNo").asInt(),
                                 t.get("TripDestination").asText(),
                                 t.get("AdjustedScheduleTime").asInt(),
                                 new double[]{t.get("Longitude").asDouble(), t.get("Latitude").asDouble()}));
                     });
                 } else {
+                    // create a Trip object with the result
                     tripResult.add(new Trip(r.get("RouteNo").asInt(),
                             trips.get("TripDestination").asText(),
                             trips.get("AdjustedScheduleTime").asInt(),
